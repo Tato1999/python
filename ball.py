@@ -1,6 +1,8 @@
 from turtle import Turtle
 import random
+from scoreboard import ScorePong
 
+score=ScorePong()
 
 class Ball(Turtle):
 
@@ -65,3 +67,14 @@ class Ball(Turtle):
 
     def ball_y(self):
         return self.ycor()
+
+    def lose_ball(self):
+        if self.ycor() < 250 or self.ycor() < -250:
+            if self.xcor() > 350:
+                self.goto(random.randint(-250,250),random.randint(-250,250))
+                score.score1_Up()
+                
+            elif self.xcor() < -350:
+                self.goto(random.randint(-250,250),random.randint(-250,250))
+                score.score2_Up()
+                
