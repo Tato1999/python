@@ -58,5 +58,29 @@ class ScorePong(Turtle):
             n = 2
 
         
+FONT = ("Courier", 24, "normal")
 
-   
+lvl = Turtle()
+
+class ScoreCar():
+    def __init__(self):
+        self.level = 0
+
+    def create_level(self):
+        global lvl
+        lvl.penup()
+        lvl.goto(-285,270)
+        lvl.write(f"{self.level}",move=True, align = "left", font = ("arial",24))
+        lvl.hideturtle()
+    
+    def level_up_counter(self):
+        self.level += 1
+
+    def clear_old(self):
+        global lvl
+        lvl.clear()
+
+    def game_over(self):
+        over = Turtle()
+        over.hideturtle()
+        over.write(f"Game Over", align = "center", font = ("arial",30))
