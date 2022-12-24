@@ -1361,45 +1361,9 @@
 
 # # need to add speed for ball
 
-import time
-from turtle import Screen
-from player import Player
-from car_manager import CarManager
-from scoreboard import ScoreCar
-
-screen = Screen()
-screen.setup(width=600, height=600)
-screen.tracer(0)
 
 
-player = Player()
 
-car = CarManager()
-
-level = ScoreCar()
-over = ScoreCar()
-game_is_on = True
-screen.listen()
-screen.onkey(player.go_up,"w")
-while game_is_on:
-    time.sleep(0.1)
-    screen.update()
-    car.create_car()
-    car.move()
-    level.create_level()
-    for i in car.all_car:
-        if i.distance(player) < 25:
-            over.game_over()
-            game_is_on = False
-
-
-    if player.is_finish_true():
-        level.clear_old()
-        level.level_up_counter()
-        car.speed_up()
-
-
-screen.exitonclick()
 
 
 
