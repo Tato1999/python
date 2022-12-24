@@ -6,6 +6,8 @@ class Score(Turtle):
     def __init__(self):
         super().__init__()
         self.score = 0
+        with open("snake_high_score.txt", mode="r") as file:
+            self.high_score = int(file.read())
         self.color("white")
         self.penup()
         self.hideturtle()
@@ -15,7 +17,9 @@ class Score(Turtle):
 
     def update(self):
         self.clear()
-        self.write(f"Score: {self.score}", align = 'center', font = ("arial",24))
+        self.write(f"Score: {self.score}", align = 'right', font = ("arial",15))
+        self.penup()
+        self.check_hight_score()
        
 
     def scoreUp(self):
@@ -25,6 +29,19 @@ class Score(Turtle):
     def game_over(self):
         self.goto(0,0)
         self.write("Game Over", align='center', font=('arial',24))
+
+    def check_hight_score(self):
+            self.write(f"High Score: {self.high_score}", align = 'left', font = ("arial",15))
+
+            if self.high_score < self.score:
+                high = open("snake_high_score.txt", mode='w')
+                high.write(str(self.score))
+                high.close()
+                self.clear()
+                self.write(f"High Score: {self.high_score}", align = 'left', font = ("arial",15))
+
+    def reset_point(self):
+        self.score = 0
 
 class ScorePong(Turtle):
     

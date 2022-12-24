@@ -55,4 +55,11 @@ class Snake:
         '''Function To turn left'''
         if self.head.heading() != 0.0:
             self.count[0].setheading(180)
+
+    def reset(self):
+        for i in self.count:
+            i.setpos(1000,1000)
+        self.count.clear()
+        self.create_snake()
+        self.head = self.count[0]
     
